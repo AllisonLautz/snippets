@@ -1,0 +1,150 @@
+
+$white:#fff;
+$black:#000;
+
+
+
+@mixin row($h:left, $v:stretch, $w:wrap){
+	display: flex;
+	flex-direction:row;
+	@if $h == "center"{
+		justify-content:center;
+	}
+	@else if $h == "left"{
+		justify-content:flex-start;
+	}
+	@else if $h == "right"{
+		justify-content:flex-end;
+	}
+
+	@else if $h == "between"{
+		justify-content:space-between;
+	}
+
+	@else if $h == "around"{
+		justify-content:space-around;
+	}
+
+	@else if $h == "evenly"{
+		justify-content:space-evenly;
+	}
+
+
+	@if $v == "stretch"{
+		align-items:stretch;
+	}
+	@else if $v == "top"{
+		align-items:flex-start;
+	}
+	@else if $v == "bottom"{
+		align-items:flex-end;
+	}
+	@else if $v == "center"{
+		align-items:center;
+	}
+
+	@else if $v == "baseline"{
+		align-items:baseline;
+	}
+
+	@if $w == "nowrap"{
+		flex-wrap:nowrap;
+	}
+
+	@else{
+		flex-wrap:wrap;
+	}
+}
+
+
+@mixin column($h:left, $v:stretch, $o:other){
+	display: flex;
+	flex-direction:column;
+	@if $h == "left" or "start"{
+		align-items:flex-start;
+	}
+	// @else if $h == "start"{
+	// 	align-items:flex-start;
+	// }
+	@else if $h == "center"{
+		align-items:center;
+	}
+	@else if $h == "right" or "end"{
+		align-items:flex-end;
+	}
+
+
+	@if $v == "stretch"{
+		justify-content:stretch;
+	}
+	@else if $v == "center"{
+		justify-content:center;
+	}
+	@else if $v == "top"{
+		justify-content:flex-start;
+	}
+	@else if $v == "bottom"{
+		justify-content:flex-end;
+	}
+	@else if $v == "between"{
+		justify-content:space-between;
+	}
+
+	@else if $v == "around"{
+		justify-content:space-around;
+	}
+
+
+
+	@if $o == "nowrap"{
+		flex-wrap:nowrap;
+	}
+
+	@else if $o == "center"{
+		text-align:center;
+	}
+
+	@else if $o == "nowrapcenter"{
+		flex-wrap:nowrap;
+		text-align:center;
+	}
+
+	@else{
+		flex-wrap:wrap;
+		
+	}
+
+}
+
+$xl:150px;
+$l:100px;
+$m:75px;
+$s:50px;
+$xs:25px;
+
+@mixin ease($t:.3){
+	transition: all #{$t}s ease-in-out;
+}
+
+
+$monitor: "(min-width: 1601px)";
+$desktop: "(max-width: 1600px)";
+$tablet: "(max-width: 1080px)";
+$tabile : "(max-width: 836px)";
+$mobile : "(max-width: 420px)";
+
+
+
+*{
+	box-sizing:border-box;
+}
+
+body{
+	font-family:sans-serif;
+	font-weight:300;
+	font-size:16px;
+	line-height:1.5em;
+}
+
+
+
