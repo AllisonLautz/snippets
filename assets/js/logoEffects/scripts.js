@@ -36,13 +36,13 @@ jQuery(document).ready(function($){
 
 
 	
-	for(i = 0; i < logos.length; i++){
+	for(let i = 0; i < logos.length; i++){
 		arr.push(i)
 	}
 
 
 
-	for(i = 0; i < loops; i++){
+	for(let i = 0; i < loops; i++){
 		master.push(arr.splice(low, x));
 	}
 

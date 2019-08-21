@@ -3,9 +3,9 @@
 <html>
 <head>
 	<title>Flip-Cards</title>
-	<link rel="stylesheet" type="text/css" href="dist/css/flipCards/styles.css">
+	<link rel="stylesheet" type="text/css" href="dist/css/styles.css">
 </head>
-<body>
+<body class="flipCards">
 	<div class="wrapper flex">
 
 

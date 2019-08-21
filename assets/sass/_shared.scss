@@ -60,7 +60,7 @@ $black:#000;
 @mixin column($h:left, $v:stretch, $o:other){
 	display: flex;
 	flex-direction:column;
-	@if $h == "left" or "start"{
+	@if $h == "start"{
 		align-items:flex-start;
 	}
 	// @else if $h == "start"{

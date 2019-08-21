@@ -2,9 +2,9 @@
 <html>
 <head>
 	<title>Logo Effects</title>
-	<link rel="stylesheet" type="text/css" href="dist/css/logoEffects/styles.css">
+	<link rel="stylesheet" type="text/css" href="dist/css/styles.css">
 </head>
-<body>
+<body class="logoEffects">
 
 
 	<?php
@@ -65,6 +65,7 @@
 			// print_r($logos);
 
 
+
 			for($i = $loops - 1; $i >= 0; $i--):
 				$output .= '<div class="board loop-'.$i.'">';
 				$ceil = (($i + 1) * $x) - $x;
@@ -82,12 +83,10 @@
 						}
 					}
 
-		// 		else{
-					// $class = in_array($j, $arr) ? ' nofade' : (strpos($logos[$j], 'empty') !== false ? ' nologo' : false);
-
-					// $inside = $logos[$j] ? '<img src="'.$logos[$j].'">' : false;
-					// $output .= '<div class="img img-'.$j.'" data-count="'.$j.'">'.$inside.'</div>';
-		// 		}
+					else{
+						$class = in_array($j, $arr) ? ' nofade' : (strpos($logos[$j], 'empty') !== false ? ' nologo' : '');
+						$output .= '<div class="img img-'.$j.$class.'" data-count="'.$j.'">'.(strpos($logos[$j], 'empty') === 0 ? '' : '<img src="'.$logos[$j].'">').'</div>';
+					}
 
 				endfor;
 				$output .= '</div>';
@@ -100,12 +99,12 @@
 	}
 
 
-	echo logoEffects(true);
+	echo logoEffects(false);
 
 
 
 	?>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="assets/js/logoEffects/_scripts.js"></script>
+	<script src="dist/js/logoEffects/scripts.min.js"></script>
 </body>
 </html>
