@@ -1,10 +1,12 @@
-@import '../_resets';
-@import '../_shared';
+$light:#ff7b00;
+$dark:#f36c23;
+
 
 .wrapper{
 	width:90%;
 	max-width:1200px;
 	margin:0 auto;
+	@include row(between, stretch)
 }
 
 .flex{
@@ -12,10 +14,10 @@
 }
 
 
-.flip-container{
+.flip-container{ /* this may or may not be necessary. (i'm guessing it depends on the browser). if unnecessary, transfer attributes to .flipper ("flipper! flipper!") */
 	perspective: 1000px;
-	flex-basis: calc(25% - 25px);
-	margin:12.5px;
+	flex-basis: calc(50% - 15px);
+	margin:15px 0;
 	position: relative;
 	&:hover{
 		.flipper{
@@ -28,53 +30,53 @@
 	transition: 0.6s;
 	transform-style: preserve-3d;
 	position: relative;
-	// margin: 12.5px;
-	// width: calc(100% - 25px);
 	width:100%;
-	// box-shadow:0 0 0 1px;
 	height: 100%;
 	transform: rotateY(0deg);
-	min-height: 275px;
+
+	
+
+	perspective: 1000px;
+	flex-basis: calc(50% - 15px);
+	margin:15px 0;
+	position: relative;
+	&:hover{
+		transform:rotateY(180deg);
+	}
 }
 
 
 .front, .back{
 	backface-visibility: hidden;
-	// position: absolute;
-	top: 0;
-	left: 0;
 	color:$white;
 	width: 100%;
-	min-height: 275px;
+	// min-height: 275px;
+	min-height:400px;
 }
 
 .front{
 	z-index: 2;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+	@include column(center, center);
 	text-align: center;
-	flex-wrap: wrap;
-	transform: rotateY(0deg)translateY(-50%);
-	background: #f36c23;
-	padding: 40px 15px;
+	background-color:$dark;
+	// padding: 40px 15px;
 	position: absolute;
 	top:50%;
+	transform: rotateY(0deg)translateY(-50%);
 
 }
 
 .back{
 	transform: rotateY(180deg);
 	box-shadow: 0px 20px 45px 0px rgba($black, .2);
-	background: #ff7b00;
+	background-color:$light;
 	z-index: 3;
 	position:relative;
 	height:100%;
 	display:flex;
 	flex-flow:column;
 	justify-content:center;
-	
+
 	.title{
 		display: flex;
 		flex-direction: row;
@@ -87,7 +89,6 @@
 	}
 	.text{
 		width:100%;
-		// flex:2;
 		padding:0 25px 25px;
 	}
 }

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Logo Effects</title>
-	<link rel="stylesheet" type="text/css" href="dist/css/styles.css">
+	<link rel="stylesheet" type="text/css" href="dist/css/styles.min.css">
 </head>
 <body class="logoEffects">
 

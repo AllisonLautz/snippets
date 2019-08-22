@@ -42,13 +42,12 @@ gulp.task('serve', () => {
 
 
 gulp.task('js', () => {
-	// return gulp.src("./assets/js/**/[^_]*.js")
 
 	gulp.src('./assets/js/**/[^_]*.js')
 	.pipe(babel({
 		presets: ['@babel/env']
 	}))
-	
+
 
 	// .pipe(uglify()).on('error', function(e){console.log(e);})
 	.pipe(rename({suffix: '.min'}))
@@ -57,8 +56,9 @@ gulp.task('js', () => {
 });
 
 
+
 gulp.task('sass', () => {
-	return gulp.src("assets/sass/**/*.scss")
+	gulp.src("assets/sass/**/*.scss")
 	.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
 	.pipe(rename({suffix: '.min'}))
 	.pipe(gulp.dest("./dist/css"))
