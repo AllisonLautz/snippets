@@ -2,6 +2,7 @@
 @import 'shared';
 
 .flipCards{
+	margin:15px 0;
 	min-height:100vh;
 	@include row(left, center);
 	
@@ -10,4 +11,16 @@
 
 .logoEffects{
 	@import 'logoEffects';
+}
+
+.touchSwipe{
+	margin:0;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	flex-flow:column;
+	min-height:100vh;
+	
+	@import 'touchSwipe';
+
 }

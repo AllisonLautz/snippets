@@ -151,3 +151,29 @@ img{
 }
 
 
+ol{
+	list-style-type:decimal;
+	margin:15px;
+	& > li{
+		font-size:1.15em;
+	}
+}
+
+ul{
+	list-style-type:disc;
+	margin:15px 15px 30px;
+}
+
+ol li, ul li{
+	margin:15px;
+}
+
+li{
+	font-size:1rem;
+}
+
+a{
+	@include ease;
+	text-decoration:none;
+}
+

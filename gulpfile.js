@@ -1,6 +1,6 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
-const sass = require('gulp-sass');
+const gulp_sass = require('gulp-sass');
 const del = require('del');
 const browserSync = require('browser-sync').create();
 const svgSprite = require('gulp-svg-sprite');
@@ -9,6 +9,45 @@ const rename = require('gulp-rename');
 const runSequence = require('run-sequence');
 
 
+
+
+const { watch } = require('gulp');
+
+const js = watch(['assets/js/**/[^_]*.js']);
+
+js.on('change', function(path, stats) {
+	// console.log(`File ${path} was changed`);
+	gulp.src('./assets/js/**/[^_]*.js')
+	.pipe(babel({
+		presets: ['@babel/env']
+	}))
+
+
+	.pipe(uglify()).on('error', function(e){console.log(e);})
+	.pipe(rename({suffix: '.min'}))
+	.pipe(gulp.dest('./dist/js'))
+	.pipe(browserSync.stream());
+	// .pipe(browserSync.reload);
+
+});
+
+
+
+
+const sass = watch(['assets/sass/**/*.scss']);
+
+sass.on('change', function(path, stats){
+	// console.log(`File ${path} was changed`);
+	gulp.src('assets/sass/**/*.scss')
+	.pipe(gulp_sass({outputStyle: 'compressed'}).on('error', gulp_sass.logError))
+	.pipe(rename({suffix: '.min'}))
+	.pipe(gulp.dest('./dist/css'))
+	.pipe(browserSync.stream());
+})
+
+
+
+const svg = watch(['imgs/svg/**.svg']);
 
 const config = {
 	shape:{
@@ -25,54 +64,26 @@ const config = {
 
 };
 
-
-
-
-gulp.task('serve', () => {
-	browserSync.init({
-		proxy: 'localhost/_other/snippets',
-		open: 'external'
-	});
-
-	gulp.watch("assets/js/**/[^_]*.js", gulp.series('js'));
-	gulp.watch("assets/sass/**/*.scss", gulp.series('sass'));
-	gulp.watch("imgs/svg/**.svg", gulp.series('svg'));
-	gulp.watch("*.php").on('change', browserSync.reload);
-});
-
-
-gulp.task('js', () => {
-
-	gulp.src('./assets/js/**/[^_]*.js')
-	.pipe(babel({
-		presets: ['@babel/env']
-	}))
-
-
-	// .pipe(uglify()).on('error', function(e){console.log(e);})
-	.pipe(rename({suffix: '.min'}))
-	.pipe(gulp.dest("./dist/js"))
-	.pipe(browserSync.stream());
-});
-
-
-
-gulp.task('sass', () => {
-	gulp.src("assets/sass/**/*.scss")
-	.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-	.pipe(rename({suffix: '.min'}))
-	.pipe(gulp.dest("./dist/css"))
-	.pipe(browserSync.stream());
-});
-
-
-gulp.task('svg', () => {
+svg.on('change', function(path, stats){
 	return gulp.src('imgs/svg/**.svg')
 	.pipe(svgSprite(config))
 	.pipe(gulp.dest('imgs'));
 });
 
 
+const folder = 'localhost/_other/snippets'; /* update this to reflect local folder */
+
+gulp.task('serve', () => {
+	browserSync.init({
+		proxy: folder+'/index.php',
+		open: 'external'
+	});
+
+
+
+	gulp.watch('*.php').on('change', browserSync.reload);
+});
+
+
+
 gulp.task('default', gulp.series('serve'));
-
-

@@ -151,63 +151,63 @@
 
 
 
-		foreach($ws_data as $k => $v):
+		// foreach($ws_data as $k => $v):
 
-			// $svg = 'https://www.senecaglobal.com/wp-content/uploads/2017/10/' . $v['img'] . '.svg';
-			$svg = $v['img'];
+		// 	// $svg = 'https://www.senecaglobal.com/wp-content/uploads/2017/10/' . $v['img'] . '.svg';
+		// 	$svg = $v['img'];
 
-			// echo '<div class="flip-container">';
-			echo '<div class="flipper">';
-			
-			
+		// 	// echo '<div class="flip-container">';
+		// 	echo '<div class="flipper">';
+		
+		
 
-			echo '<div class="front">';
-			echo '<img class="lazy svg" src="'.$svg.'">';
-			echo '<h3>'.$v['h3'].'</h3>';
-			echo '</div>';
+		// 	echo '<div class="front">';
+		// 	echo '<img class="lazy svg" src="'.$svg.'">';
+		// 	echo '<h3>'.$v['h3'].'</h3>';
+		// 	echo '</div>';
 
-			echo '<div class="back">';
-			echo '<div class="title">';
-			//<img class="lazy svg" src="'.$svg.'">
-			echo '<p>'.$v['h3'].'</p>';
-			echo '</div>'; // end title 
-			echo '<div class="text"><p>'.$v['text'].'</p></div>';
-			
-			echo '</div>'; // end back
-			
-			echo '</div>';
-			// echo '</div>';
+		// 	echo '<div class="back">';
+		// 	echo '<div class="title">';
+		// 	//<img class="lazy svg" src="'.$svg.'">
+		// 	echo '<p>'.$v['h3'].'</p>';
+		// 	echo '</div>'; // end title 
+		// 	echo '<div class="text"><p>'.$v['text'].'</p></div>';
+		
+		// 	echo '</div>'; // end back
+		
+		// 	echo '</div>';
+		// 	// echo '</div>';
 
 
-		endforeach;
+		// endforeach;
 
 
 
 		foreach($data as $k => $v):
 
-			// $svg = 'https://www.senecaglobal.com/wp-content/uploads/2017/10/' . $v['img'] . '.svg';
+			$svg = 'https://www.senecaglobal.com/wp-content/uploads/2017/10/' . $v['img'] . '.svg';
 
-			// echo '<div class="flip-container">
-			// <div class="flipper">';
+			echo '<div class="flip-container">
+			<div class="flipper">';
 			
 			
 
-			// echo '<div class="front">
-			// <img class="lazy svg" src="'.$svg.'">
-			// <h3>'.$v['h3'].'</h3>
-			// </div>';
+			echo '<div class="front">
+			<img class="lazy svg" src="'.$svg.'">
+			<h3>'.$v['h3'].'</h3>
+			</div>';
 
-			// echo '<div class="back">
-			// <div class="title">
-			// <img class="lazy svg" src="'.$svg.'">
-			// <p>'.$v['h3'].'</p>
-			// </div>'; // end title 
-			// echo '<div class="text"><p>'.$v['text'].'</p></div>
+			echo '<div class="back">
+			<div class="title">
+			<img class="lazy svg" src="'.$svg.'">
+			<p>'.$v['h3'].'</p>
+			</div>'; // end title 
+			echo '<div class="text"><p>'.$v['text'].'</p></div>
 			
-			// </div>'; // end back
+			</div>'; // end back
 			
-			// echo '</div>
-			// </div>';
+			echo '</div>
+			</div>';
 
 
 		endforeach;
