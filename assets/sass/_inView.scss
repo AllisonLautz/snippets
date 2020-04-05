@@ -58,16 +58,20 @@ p{
 [data-view]{}
 
 [data-view="inQueue"], [data-view="exited"]{
-	opacity:0;
+	// opacity:0;
 }
 [data-view="entering"], [data-view="exiting"]{
-	opacity:.5;
+	// opacity:.5;
+	background:black;
+	color:white;
 }
 
 [data-view="inQueue"]{}
 [data-view="entering"]{}
 [data-view="inView"]{
-	opacity:1;
+	// opacity:1;
+	background:white;
+	color:black;
 }
 [data-view="exiting"]{}
 [data-view="exited"]{}

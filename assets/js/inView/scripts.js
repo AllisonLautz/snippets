@@ -18,6 +18,9 @@ document.addEventListener("DOMContentLoaded", function(){
     var elOffset;
 
     var array = [];
+    var key = [];
+
+    
 
 
     // --- begin forEach --- //
@@ -27,34 +30,54 @@ document.addEventListener("DOMContentLoaded", function(){
       elOffset = item.offsetTop;
 
 
-      // (viewport, Element) // [fixed, Variable] //
+      // 0
 
-      // 1
+      var entering = (elOffset - windowHt);
 
-      var bottomTop = (elOffset - windowHt) * bufferHt;
+      // === some formulas === //
 
-      // 2 or 3 (depending on element height)
+      // ===== which comes first: top element hits top window (element > viewport) or bottom element hits bottom window (element < viewport)? ===== //
 
-      var topTop = (elOffset - headerHt) * bufferHt;
+      var topTop = (elOffset - headerHt); // top of element hits top of window
+      var bottomBottom = entering + elHt; // bottom of element hits bottom of window
 
-      // 3 or 2 (depending on element height)
+      // 1 
 
-      var bottomBottom = bottomTop + elHt;
+      var inView = topTop < bottomBottom ? topTop : bottomBottom;
 
-      // 4
+      // 2 
 
-      var topBottom = topTop + elHt;
+      var exiting = topTop < bottomBottom ? bottomBottom : topTop; 
+
+      // === back to your regularly scheduled programming === //
+
+      // 3
+
+      var exited = (elOffset - headerHt) + elHt;
 
 
-      var second = (topTop < bottomBottom ? topTop : bottomBottom);
-
-      var third = (topTop < bottomBottom ? bottomBottom : topTop);
 
 
-      array.push([bottomTop, second, third, topBottom, item]);
-      // console.log(topTop, bottomBottom);
-      console.log(elOffset, windowHt, elHt);
-      // array.push([bottomTop*.75, second*.75, third*.75, topBottom*.75, item]);
+    // === revise inView & exiting if bufferHt === //
+
+
+
+    var inViewHt = (exiting - inView);
+    var newInViewHt = Math.ceil(inViewHt * bufferHt);
+    var diff = inViewHt - newInViewHt;
+    var margin = Math.ceil(diff/2);
+
+    inView = inView + margin;
+    exiting = exiting - margin;
+
+
+
+      // array push
+
+      array.push([entering, inView, exiting, exited, item]);
+
+
+
 
 
     }); // end forEach
@@ -95,6 +118,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
     setAttrs(window.pageYOffset);
 
+
+
     console.log(array, windowHt);
 
     var lastScrollTop = 0;
@@ -132,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     }; // end inView fn
 
-    inView(document.querySelectorAll('section .wrapper'), false, false);
+    inView(document.querySelectorAll('section .wrapper'), false, .5);
 
   });
 
