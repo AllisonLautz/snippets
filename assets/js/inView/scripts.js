@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     function setAttrs(st){
 
-      console.log(st);
+      // console.log(st);
 
       array.forEach(item => {
         if(st < item[0]){
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 
-    console.log(array, windowHt);
+    // console.log(array, windowHt);
 
     var lastScrollTop = 0;
 
