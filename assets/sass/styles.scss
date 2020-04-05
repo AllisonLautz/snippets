@@ -1,6 +1,11 @@
 @import 'resets';
 @import 'shared';
 
+
+.inView{
+	@import 'inView';
+}
+
 .flipCards{
 	margin:15px 0;
 	min-height:100vh;

@@ -71,7 +71,7 @@ svg.on('change', function(path, stats){
 });
 
 
-const folder = 'localhost/_other/snippets'; /* update this to reflect local folder */
+const folder = 'localhost/other/snippets'; /* update this to reflect local folder */
 
 gulp.task('serve', () => {
 	browserSync.init({

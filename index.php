@@ -32,6 +32,11 @@
 		<h2>Here are some snippets of code that I have reused a few times:</h2>
 
 		<ol>
+			<li><a href="inView.php">In View</a>
+				<ul>
+					<li>Detects when chosen element(s) is/are in view</li>
+				</ul>
+			</li>
 			<li><a href="flipCards.php">Flip Cards</a>
 				<ul>
 					<li>A CSS-only hover animation</li>
