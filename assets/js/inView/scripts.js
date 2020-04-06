@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function(){
     var elOffset;
 
     var array = [];
-    var key = [];
+
 
     
 

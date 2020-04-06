@@ -61,17 +61,26 @@ p{
 	opacity:0;
 }
 [data-view="entering"], [data-view="exiting"]{
-	opacity:.5;
+	opacity:.2;
 	// background:black;
 	// color:white;
 }
 
-[data-view="inQueue"]{}
-[data-view="entering"]{}
+[data-view="inQueue"]{
+	transform:translateY(200%);
+}
+[data-view="entering"]{
+	transform:translateY(100%);
+}
 [data-view="inView"]{
 	opacity:1;
+	transform:translateY(0%);
 	// background:white;
 	// color:black;
 }
-[data-view="exiting"]{}
-[data-view="exited"]{}
+[data-view="exiting"]{
+	transform:translateY(-100%);
+}
+[data-view="exited"]{
+	transform:translateY(-200%);
+}
