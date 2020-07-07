@@ -5,20 +5,14 @@ this file is not minified b/c at the moment ES6 is not accepted by uglifyjs.
 
 === */
 
-/* homepage animating logos */
-jQuery(document).ready(function($){
-	
+document.addEventListener("DOMContentLoaded", function(){
+	console.log('sup');
 
-	// console.log('stop!')	
+	console.log(document.querySelectorAll('section'));
 
-	/* === Animating Logos === */
-
-
-
-	var x = parseInt($('.logoboard').attr('data-x'));
-	var loops = $('.logoboard .board').length;
-
-	var logos = $('.logoboard .img');
+	var x = parseInt(document.querySelector('.logoboard').dataset.x);
+	var loops = document.querySelectorAll('.logoboard .board').length;
+	var logos = document.querySelectorAll('.logoboard .img');
 
 	var arr = [];
 
@@ -36,22 +30,18 @@ jQuery(document).ready(function($){
 
 
 	
-	for(let i = 0; i < logos.length; i++){
-		arr.push(i)
+	for(var i = 0; i < logos.length; i++){
+		arr.push(i);
 	}
 
-
-
-	for(let i = 0; i < loops; i++){
+	for(var i = 0; i < loops; i++){
 		master.push(arr.splice(low, x));
 	}
 
-	
 
-
-	if($('.nologo').length){
+	if(document.querySelectorAll('.nologo').length){
 		var a = master.length - 1;
-		var e = $('.nologo').length;
+		var e = document.querySelectorAll('.nologo').length;
 		master[a].splice(-e, e);
 		if(master[a - 1]){
 			master[a - 1].splice(-e, e);
@@ -60,10 +50,9 @@ jQuery(document).ready(function($){
 	}
 
 
-
 	function shuffle(a) {
-		for (let i = a.length - 1; i > 0; i--) {
-			const j = Math.floor(Math.random() * (i + 1));
+		for (var i = a.length - 1; i > 0; i--) {
+			var j = Math.floor(Math.random() * (i + 1));
 			[a[i], a[j]] = [a[j], a[i]];
 		}
 		return a;
@@ -72,10 +61,7 @@ jQuery(document).ready(function($){
 
 
 
-	
-
-
-	function animatefadeIn(){
+	function animatefadeInVanilla(){
 		var speed = 2000;
 
 
@@ -87,10 +73,10 @@ jQuery(document).ready(function($){
 
 		rArr.push(seanSplicer)
 
-		var current = $('.board.loop-'+board);
-		current.addClass('current');
-		
-		$('.board:not(.loop-'+board+')').removeClass('current');
+		var current = document.querySelector('.board.loop-'+board);
+		current.classList.add('current');
+
+		document.querySelector('.board:not(.loop-'+board+')').classList.remove('current');
 
 
 		var n = rArr.length - 1;
@@ -100,15 +86,18 @@ jQuery(document).ready(function($){
 
 		if(iter == 0){ // start with board #1 visible, loop through and add fade
 
-			current.find('.img').each(function(){
-				if($(this).data('count') == EQ){
-					$(this).toggleClass('fade')
+			for(var i = 0; i < current.querySelectorAll('.img').length; i++){
+				if(current.querySelectorAll('.img')[i].dataset.count == EQ){
+					current.querySelectorAll('.img')[i].classList.contains('fade') ? current.querySelectorAll('.img')[i].classList.remove('fade') : current.querySelectorAll('.img')[i].classList.add('fade');
 				}
-			})
+			}
+
+
+
 
 
 			if(array.length > 0){
-				setTimeout(animatefadeIn, speed);
+				setTimeout(animatefadeInVanilla, speed);
 			}
 
 			else{
@@ -118,7 +107,7 @@ jQuery(document).ready(function($){
 
 
 				if(board < loops - 1){ // (only applies if boards > 2). looping through a middle board #
-					setTimeout(animatefadeIn, speed);
+					setTimeout(animatefadeInVanilla, speed);
 				}
 
 
@@ -128,7 +117,7 @@ jQuery(document).ready(function($){
 					board = 0;
 
 
-					setTimeout(animatefadeIn, speed);
+					setTimeout(animatefadeInVanilla, speed);
 				}
 
 
@@ -143,23 +132,25 @@ jQuery(document).ready(function($){
 		else{ // return to board #1 and remove fade class (reset)
 
 			if(board == 0){
-				
-				$('.loop-0').find('.img').each(function(){
-					if($(this).data('count') == EQ){
-						$(this).removeClass('fade')
+
+				for(var i = 0; i < document.querySelectorAll('.loop-0 .img').length; i++){
+					if(document.querySelectorAll('.loop-0 .img')[i].dataset.count == EQ){
+						document.querySelectorAll('.loop-0 .img')[i].classList.remove('fade');
 					}
-				})
+				}
+
+
 
 
 				if(array.length > 0){
-					setTimeout(animatefadeIn, speed);
+					setTimeout(animatefadeInVanilla, speed);
 				}
 				else{
-					
+					for(var i = 0; i < document.querySelectorAll('.board .img.fade').length; i++){
+						document.querySelectorAll('.board .img.fade').classList.remove('fade');
+					}
 
-					$('.board .img.fade').each(function(){
-						$(this).removeClass('fade')
-					})
+
 
 
 					array.push(...rArr);  // reset array 
@@ -168,7 +159,7 @@ jQuery(document).ready(function($){
 					iter = 0;
 					board = 0;
 
-					setTimeout(animatefadeIn, speed);
+					setTimeout(animatefadeInVanilla, speed);
 
 				}
 
@@ -181,8 +172,15 @@ jQuery(document).ready(function($){
 	}
 
 
+
+
 	if(loops > 1){
-		animatefadeIn();
+		animatefadeInVanilla();
 	}
 
+
+
+
 });
+
+
